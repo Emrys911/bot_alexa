@@ -1,4 +1,4 @@
-triggers = {'Hey Alexa'}
+triggers = {'alexa'}
 
 data_set = {
     'hello': 'passive I am fine, thank you',

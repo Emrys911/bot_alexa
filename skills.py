@@ -162,6 +162,6 @@ def passive():
 
 
 if __name__ == "__main__":
-    triggers = ["Hey Alexa"]
+    triggers = ["alexa"]
     start_scheduler()  # Start the scheduler
     listen_for_command(triggers)

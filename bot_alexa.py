@@ -24,7 +24,7 @@ openai.api_key = OPENAI_API_KEY
 
 # Initialize wake-word engine (Picovoice Porcupine) with predefined wake word
 try:
-    porcupine = pvporcupine.create(access_key="YOUR_ACCESS_KEY", keywords=["mila"], sensitivities=[1])
+    porcupine = pvporcupine.create(access_key="ACCESS_KEY", keywords=["alexa"], sensitivities=[1])
 except Exception as e:
     print(f"Error initializing Porcupine: {e}")
     sys.exit(1)
@@ -46,7 +46,7 @@ def recognize_command(audio, recognizer, Triggers):
         command = offline_recognition(audio_data)
 
     if command and any(trigger in command for trigger in Triggers):
-        command = command.replace('Mila', '').strip()
+        command = command.replace('alexa', '').strip()
         respond_to_command(command)
 
 
@@ -54,7 +54,7 @@ def recognize_command(audio, recognizer, Triggers):
 
 async def start(update: Update) -> None:
     """Start command for the Telegram bot."""
-    await update.message.reply_text('Привет! Я Mila, как могу помочь?')
+    await update.message.reply_text('Привет! Я Alexa, как могу помочь?')
 
 
 async def handle_message(update: Update) -> None:
@@ -74,7 +74,7 @@ def telegram_bot():
 
 
 if __name__ == "__main__":
-    triggers = ["Alexa", "Bot Alexa"]
+    triggers = ["alexa"]
     start_scheduler()
 
     # Use ThreadPoolExecutor to run both the Telegram bot and the voice assistant concurrently
