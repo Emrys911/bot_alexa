@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  bot_alexa_compose_image:
+    build:
+      context: .
+    container_name: bot_alexa_compose_image
+    environment:
+      - APP_HOME=/app
+      - OPENAI_API_KEY=1d8f677e76454e4c995f48f8648395ff.3b0477bae71a2471
+      - TELEGRAM_BOT_TOKEN=6701996903:AAG86hAkmORtKPQ-HYpZLquM9hiBNGoEKkg
+      - WEATHER_API_KEY=f7a51032f4c134dec171910751b38ff4
+      - WEATHER_API_URL=https://api.weatherapi.com/v1/current.json
+      - ACCESS_KEY=GnXXnq/UstTO0dR002/GPYP+nMsFPgHJzzTvecoJg99XI13YFxd4sg==
+    volumes:
+      - .:/app
+      - /dev/snd:/dev/snd  # ALSA sound device forwarding
+      - /run/user/1000/pulse:/run/user/1000/pulse  # PulseAudio socket forwarding
+    devices:
+      - /dev/snd:/dev/snd  # Required for sound devices
+    command: python main_app.py
+    stdin_open: true
+    tty: true
